@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return to_route('login');
 });
 
 // user dashboar route
@@ -22,3 +22,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('user', function () {
     return view('user.dashboard');
 })->name('user-profile');
+
+// user dashboar route
+Route::get('user', function () {
+    return view('user.dashboard');
+})->name('dashboard');
