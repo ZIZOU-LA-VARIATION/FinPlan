@@ -52,7 +52,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('accounts')}}">
+            <a class="nav-link  " href="{{route('accounts.index')}}">
                 <div>
                     <img src="../assets/img/account.png" alt="" class="image">
                 </div>
