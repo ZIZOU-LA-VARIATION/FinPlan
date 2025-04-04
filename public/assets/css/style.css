@@ -1,0 +1,265 @@
+/* Style général */
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    background-color: #f5f7fa;
+}
+
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Dashboard */
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    width: 190px;
+    height: 150px;
+}
+
+.card-total-balance {
+    background-color: #4caf50;
+    /* Green */
+}
+
+.card-monthly-expenses {
+    background-color: #f44336;
+    /* Red */
+}
+
+.card-income {
+    background-color: #2196f3;
+    /* Blue */
+}
+
+.card-savings-goal {
+    background-color: #ff9800;
+    /* Orange */
+}
+
+.card h3 {
+    color: #fff;
+}
+
+.card p {
+    color: #fff;
+}
+
+/* Progress bar */
+.progress-bar {
+    background-color: #ddd;
+    border-radius: 10px;
+    width: 100%;
+    height: 10px;
+    margin-top: 10px;
+}
+
+#savings-progress {
+    height: 10px;
+    background-color: #2dce89;
+    border-radius: 10px;
+    width: 0%;
+}
+
+/* Conteneur des graphiques */
+.charts {
+    margin-top: 40px;
+    margin-left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Espacement entre les graphiques */
+    justify-content: flex-start;
+    /* Par défaut, les graphiques commencent à gauche */
+}
+
+/* Conteneur de chaque graphique */
+.chart-container {
+    width: 30%;
+    /* Chaque graphique occupe 48% de la largeur */
+    margin-bottom: 20px;
+    /* Espacement entre les lignes */
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Si la ligne ne contient qu'un seul graphique, on le centre */
+#t {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Optionnel : Pour les écrans plus petits, chaque graphique occupera toute la largeur */
+@media (max-width: 768px) {
+    .chart-container {
+        width: 100%;
+        /* Les graphiques occuperont toute la largeur sur les petits écrans */
+    }
+}
+
+#logo {
+
+    max-width: 40%;
+    /* largeur maximale de l'image, sans dépasser 100% du conteneur */
+    max-height: 60px;
+    /* hauteur maximale pour l'image */
+    width: auto;
+    /* garde la largeur proportionnelle */
+}
+
+.image {
+    max-width: 60%;
+    /* largeur maximale de l'image, sans dépasser 100% du conteneur */
+    max-height: 60px;
+    /* hauteur maximale pour l'image */
+    width: auto;
+    /* garde la largeur proportionnelle */
+    float: left;
+    margin-right: 10px;
+}
+
+.images{
+    max-width: 100%;
+    /* largeur maximale de l'image, sans dépasser 100% du conteneur */
+    max-height: 85px;
+    /* hauteur maximale pour l'image */
+    width: auto;
+    /* garde la largeur proportionnelle */
+    float: left;
+    margin-right: 10px;  
+    margin-bottom: 0;
+}
+
+.aligne {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.text {
+    float: left;
+    margin: top 0;
+}
+
+/* table transaction */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-item a {
+    border-radius: 50%;
+    padding: 8px 12px;
+}
+
+#nextButton {
+    border-radius: 50%;
+    padding: 8px 12px;
+}
+
+#prevButton {
+    border-radius: 50%;
+    padding: 8px 12px;
+}
+
+/* Modifier uniquement la hauteur des cellules dans le tbody */
+table.table tbody th,
+table.table tbody td {
+    text-align: center;
+    /* Centrer horizontalement */
+    vertical-align: middle;
+    /* Centrer verticalement */
+    padding-top: 1px;
+    padding-bottom: 0px;
+    /* Réduit l'espace autour du texte dans chaque cellule */
+    line-height: 1;
+    /* Ajuste la hauteur de ligne pour les cellules */
+}
+
+/* Style pour la modal */
+.modal-content {
+    background-color: #f8f9fa;
+    /* Couleur de fond douce pour la modal */
+    border-radius: 10px;
+    /* Coins arrondis pour la modal */
+    border: 1px solid #ddd;
+    /* Bordure discrète */
+}
+
+/* Style des champs de formulaire */
+.modal-body .form-control {
+    border-radius: 8px;
+    /* Coins arrondis pour les champs */
+    border: 1px solid #ced4da;
+    /* Bordure légère pour les champs */
+    padding: 12px;
+    /* Espacement intérieur des champs */
+    font-size: 1rem;
+    /* Taille de police uniforme */
+}
+
+/* Style pour les labels */
+.modal-body .form-label {
+    font-weight: bold;
+    /* Rendre les labels plus visibles */
+    color: #495057;
+    /* Couleur du texte des labels */
+}
+
+/* Style du bouton de soumission */
+.modal-footer .btn-success {
+    background-color: #28a745;
+    /* Vert pour le bouton de soumission */
+    border-color: #28a745;
+    /* Bordure verte */
+    border-radius: 5px;
+    /* Coins arrondis */
+    padding: 10px 20px;
+    /* Espacement à l'intérieur du bouton */
+}
+
+/* Style du bouton de fermeture */
+.modal-header .btn-close {
+    background-color: #e9ecef;
+    /* Fond clair pour le bouton de fermeture */
+    border: 1px solid #ced4da;
+    /* Bordure légère */
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-transaction-btn {
+    order: -1;
+    /* Place le bouton à gauche */
+}
