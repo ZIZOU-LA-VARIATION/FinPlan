@@ -263,3 +263,9 @@ table.table tbody td {
     order: -1;
     /* Place le bouton à gauche */
 }
+
+.forme{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

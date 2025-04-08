@@ -12,7 +12,7 @@
                 </h2>
             </div>
 
-            
+
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -43,7 +43,7 @@
 
                         <thead class="table-dark">
                             <tr>
-                                <th>#</th>
+                                <th>Name</th>
                                 <th>Bank Name</th>
                                 <th>Type</th>
                                 <th>Initial Balance</th>
@@ -53,17 +53,29 @@
                         </thead>
 
                         <tbody id="Table">
-                            <tr>
-                                <td>1</td>
-                                <td>Bank of America</td>
-                                <td><span class="badge bg-primary">Checking</span></td>
-                                <td class="text-success fw-bold">+5,000 FCFA</td>
-                                <td class="text-danger fw-bold">-4,500 FCFA</td>
-                                <td>
-                                    <button class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></button>
-                                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
+                            @foreach($accounts as $account)
+                                <tr>
+                                    <td>{{ $account->name }}</td>
+                                    <td>{{ $account->bank_name }}</td>
+                                    <td><span class="badge bg-primary">{{ $account->account_type }}</span></td>
+                                    <td class="text-success fw-bold">{{ $account->initial_balance }}</td>
+                                    <td class="text-danger fw-bold">-4,500 FCFA</td>
+                                    <td>
+                                        <a href="{{route('accounts.edit', ['account' => $account])}}">
+                                            <button class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i></button>
+                                        </a>
+
+                                        <!-- Delete Button -->
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-account-id="{{ $account->id }}">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+
+                                        <a href="{{ route('accounts.show', ['account' => $account->id]) }}" class="btn btn-info btn-sm">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
 
                     </table>
@@ -87,7 +99,11 @@
 
             </div>
         </div>
-
+        
+        {{-- <a href="{{ route('accounts.index') }}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Retour
+        </a> --}}
+        
 
         {{-- modal form --}}
         <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
@@ -105,8 +121,8 @@
                             <!-- Account Name -->
                             <div class="mb-3">
                                 <label for="name" class="form-label">Account Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" name="name" value="{{ old('name') }}" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                                    name="name" value="{{ old('name') }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -128,9 +144,10 @@
                                 <select class="form-select @error('account_type') is-invalid @enderror" id="account_type"
                                     name="account_type" required>
                                     @foreach($accountTypes as $type)
-                                        <option value="{{ $type->value }}" {{ old('account_type') == $type->value ? 'selected' : '' }}>
-                                            {{ ucfirst(str_replace('_', ' ', $type->value)) }}
-                                        </option>
+                                                                <option value="{{ $type->value }}" {{ old('account_type') == $type->value ? 'selected' :
+                                        '' }}>
+                                                                    {{ ucfirst(str_replace('_', ' ', $type->value)) }}
+                                                                </option>
                                     @endforeach
                                 </select>
                                 @error('account_type')
@@ -141,8 +158,9 @@
                             {{-- Balance --}}
                             <div class="mb-3">
                                 <label for="initial_balance" class="form-label">Initial Balance</label>
-                                <input type="number" step="0.01" class="form-control @error('initial_balance') is-invalid @enderror"
-                                    id="initial_balance" name="initial_balance" value="{{ old('initial_balance') }}" required>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('initial_balance') is-invalid @enderror" id="initial_balance"
+                                    name="initial_balance" value="{{ old('initial_balance') }}" required>
                                 @error('initial_balance')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -156,14 +174,40 @@
             </div>
         </div>
 
+
+        <!-- Delete Confirmation Modal -->
+        <!-- Fenêtre modale de confirmation de suppression -->
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        Do you want to delete this bank account ?
+                    </div>
+                    <div class="modal-footer">
+                        <form id="deleteAccountForm"  action="{{route('accounts.destroy', $account->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
     </div>
 
 @endsection
 
 @section('script')
     <script src="{{asset('assets/js/table.js')}}"></script>
-@endsection
-
-@section('scriptP')
     <script src="{{asset('assets/js/account.js')}}"></script>
 @endsection

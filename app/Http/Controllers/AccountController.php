@@ -20,9 +20,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $account = Account::query()->orderByDesc('id');
+        $accounts = Account::query()->orderByDesc('id')->get();
         $accountTypes = AccountType::cases();
-        return view('user.account.index',compact('account','accountTypes'));
+        return view('user.account.index',compact('accounts','accountTypes'));
     }
 
     /**
@@ -42,7 +42,7 @@ class AccountController extends Controller
         try {
             // Validation des données du formulaire
             $validated = $request->validate([
-                'name' => 'required|string|max:85',
+                'name' => 'required|string|max:85|min:3',
                 'initial_balance' => 'required|numeric|min:0',
                 'bank_name' => 'required|string|max:255',
                 'account_type' => 'required|in:' . implode(',', array_column(AccountType::cases(), 'value')),
@@ -76,7 +76,7 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        //
+        return view('user.account.show', compact('account'));
     }
 
     /**
@@ -84,22 +84,49 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        //
+        $accountTypes = AccountType::cases();
+
+        return view('user.account.edit',compact('account','accountTypes'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAccountRequest $request, Account $account)
+
+
+    // Met à jour les informations du compte dans la base de données
+    public function update(Request $request, Account $account)
     {
-        //
+        // Validation des données du formulaire
+        $validated = $request->validate([
+            'name' => 'required|string|max:85|min:3',
+            'initial_balance' => 'required|numeric|min:0',
+            'bank_name' => 'required|string|max:255',
+            'account_type' => 'required|in:' . implode(',', array_column(AccountType::cases(), 'value')),
+        ]);
+
+        // Mise à jour des informations du compte
+        $account->update([
+            'name' => $validated['name'],
+            'bank_name' => $validated['bank_name'],
+            'initial_balance' => $validated['initial_balance'],
+            'account_type' => $validated['account_type'],
+            'user_id' => Auth::id(), // Associe le compte à l'utilisateur authentifié
+        ]);
+
+        // Redirection avec message de succès
+        return redirect()->route('accounts.index')->with('success', 'Compte mis à jour avec succès.');
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Account $account)
     {
-        //
+    
+        // Supprimer le compte
+        $account->delete();
+    
+        return redirect()->route('accounts.index')->with('success', 'Compte supprimé avec succès.');
     }
 }

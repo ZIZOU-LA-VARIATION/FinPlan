@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
 
@@ -9,7 +9,7 @@ id="sidenav-main">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
         aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href="#" target="_blank">
-        <img src="../assets/img/logo_finpla.png" class="navbar-brand-img h-100" alt="main_logo" id="logo">
+        <img src="{{asset('assets/img/logo_finpla.png')}}" class="navbar-brand-img h-100" alt="main_logo" id="logo">
         <span class="ms-1 font-weight-bold">FinPlan</span>
     </a>
 </div>
@@ -46,7 +46,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('transactions')}}">
                 <div>
-                    <img src="../assets/img/transaction.png" alt="" class="image">
+                    <img src="{{asset('assets/img/transaction.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Transactions</span>
             </a>
@@ -54,7 +54,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('accounts.index')}}">
                 <div>
-                    <img src="../assets/img/account.png" alt="" class="image">
+                    <img src="{{asset('assets/img/account.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Accounts</span>
             </a>
@@ -62,7 +62,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('budgets')}}">
                 <div>
-                    <img src="../assets/img/budget.png" alt="" class="image">
+                    <img src="{{asset('assets/img/budget.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Budgets</span>
             </a>
@@ -70,7 +70,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('savings')}}">
                 <div>
-                    <img src="../assets/img/saving.png" alt="" class="image">
+                    <img src="{{asset('assets/img/saving.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Savings</span>
             </a>
@@ -79,7 +79,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('debts')}}">
                 <div>
-                    <img src="../assets/img/loan.png" alt="" class="image">
+                    <img src="{{asset('assets/img/loan.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Debts</span>
             </a>
@@ -87,7 +87,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('investisments')}}">
                 <div>
-                    <img src="../assets/img/investissement.png" alt="" class="image">
+                    <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Investments</span>
             </a>
@@ -95,7 +95,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('finacial_goal')}}">
                 <div>
-                    <img src="../assets/img/investissement.png" alt="" class="image">
+                    <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">finacial_goal</span>
             </a>
@@ -103,7 +103,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('invioces')}}">
                 <div>
-                    <img src="../assets/img/investissement.png" alt="" class="image">
+                    <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">invioces</span>
             </a>
@@ -114,7 +114,7 @@ id="sidenav-main">
 <div class="sidenav-footer mx-3 ">
     <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
         <div class="full-background"
-            style="background-image: url('../assets/img/curved-images/white-curved.jpg')">
+            style="background-image: url('{{asset('assets/img/curved-images/white-curved.jpg')}}')">
         </div>
         <div class="card-body text-start p-3 w-100">
             <div
