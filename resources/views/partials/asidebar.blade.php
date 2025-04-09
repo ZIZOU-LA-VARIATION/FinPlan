@@ -68,7 +68,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('savings')}}">
+            <a class="nav-link  " href="{{route('savings.index')}}">
                 <div>
                     <img src="{{asset('assets/img/saving.png')}}" alt="" class="image">
                 </div>
