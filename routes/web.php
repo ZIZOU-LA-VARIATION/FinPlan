@@ -40,13 +40,10 @@ Route::get('finacial_goal', function () {
     return view('user.finacial_goal');
 })->name('finacial_goal');
 
-Route::get('investisments', function () {
-    return view('user.investisments');
-})->name('investisments');
-
 Route::get('invioce', function () {
     return view('user.invioces');
 })->name('invioces');
+
 
 
 
@@ -61,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('categories', CategoryController::class);
     Route::resource('savings', SavingController::class)->middleware('auth');
 
-    // Route::resource('investments', InvestmentController::class);
+    Route::resource('investments', InvestmentController::class)->middleware('auth');
     // Route::resource('financial-goals', FinancialGoalController::class);
     // Route::resource('debts', DebtController::class);
     // Route::resource('payment-reminders', PaymentReminderController::class);

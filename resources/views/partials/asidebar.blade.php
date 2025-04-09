@@ -85,7 +85,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('investisments')}}">
+            <a class="nav-link  " href="{{route('investments.index')}}">
                 <div>
                     <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>

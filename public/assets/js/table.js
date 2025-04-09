@@ -64,14 +64,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Fonction de recherche (si nécessaire)
-    document.getElementById("search").addEventListener("input", function () {
-        const searchTerm = this.value.toLowerCase();
-        for (let row of rows) {
-            let bankName = row.cells[1].textContent.toLowerCase();
-            row.style.display = bankName.includes(searchTerm) ? "table-row" : "none";
-        }
+// Fonction de recherche sur tous les champs des investissements
+document.getElementById("search").addEventListener("input", function () {
+    const searchTerm = this.value.toLowerCase();
+    
+    // Récupère toutes les lignes du tableau (excepté l'en-tête)
+    const rows = document.querySelectorAll("#Table tr");
+
+    rows.forEach(row => {
+        // Récupère toutes les cellules de chaque ligne
+        let cells = row.querySelectorAll("td");
+        
+        // On crée une variable pour vérifier si le terme de recherche existe dans la ligne
+        let isMatch = false;
+
+        // On vérifie si le terme de recherche est dans une des cellules
+        cells.forEach(cell => {
+            if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                isMatch = true; // Si une cellule correspond, on marque la ligne comme correspondant
+            }
+        });
+
+        // Si une cellule correspond, on affiche la ligne, sinon on la cache
+        row.style.display = isMatch ? "table-row" : "none";
     });
+});
+
 
     // Initialiser l'affichage de la table et la pagination
     displayTable(currentPage);
