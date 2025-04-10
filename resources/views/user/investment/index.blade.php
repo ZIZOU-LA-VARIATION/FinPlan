@@ -138,111 +138,111 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="createInvestmentModal" tabindex="-1" role="dialog"
-            aria-labelledby="createInvestmentModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createInvestmentModalLabel">Create New Investment</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<!-- Modal pour la création d'un investissement -->
+<div class="modal fade" id="createInvestmentModal" tabindex="-1" role="dialog" aria-labelledby="createInvestmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('investments.store') }}">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createInvestmentModalLabel">Create New Investment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- User -->
+                    <div class="form-floating mb-3">
+                        <select name="id_user" id="id_user" class="form-select @error('id_user') is-invalid @enderror" required>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ old('id_user') == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <label for="id_user">User</label>
+                        @error('id_user')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('investments.store') }}">
-                            @csrf
-                            <div class="form-group">
-                                <label for="id_user">User</label>
-                                <select name="id_user" id="id_user"
-                                    class="form-control @error('id_user') is-invalid @enderror">
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ old('id_user') == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('id_user')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
 
-                            <div class="form-group">
-                                <label for="name">Investment Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                    name="name" value="{{ old('name') }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                    <!-- Investment Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                            name="name" value="{{ old('name') }}" required placeholder="Investment Name">
+                        <label for="name">Investment Name</label>
+                        @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                            <div class="form-group">
-                                <label for="amount">Amount</label>
-                                <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
-                                    name="amount" value="{{ old('amount') }}" required step="0.01">
-                                @error('amount')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                    <!-- Amount -->
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control @error('amount') is-invalid @enderror" id="amount"
+                            name="amount" value="{{ old('amount') }}" required step="0.01" placeholder="Amount">
+                        <label for="amount">Amount</label>
+                        @error('amount')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                            <div class="form-group">
-                                <label for="type">Investment Type</label>
-                                <select name="type" id="type" class="form-control @error('type') is-invalid @enderror"
-                                    required>
-                                    <option value="stock" {{ old('type') == 'stock' ? 'selected' : '' }}>Stock</option>
-                                    <option value="bond" {{ old('type') == 'bond' ? 'selected' : '' }}>Bond</option>
-                                    <option value="mutual fund" {{ old('type') == 'mutual fund' ? 'selected' : '' }}>Mutual
-                                        Fund</option>
-                                    <option value="cryptocurrency" {{ old('type') == 'cryptocurrency' ? 'selected' : '' }}>
-                                        Cryptocurrency</option>
-                                </select>
-                                @error('type')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                    <!-- Investment Type -->
+                    <div class="form-floating mb-3">
+                        <select name="type" id="type" class="form-select @error('type') is-invalid @enderror" required>
+                            <option value="stock" {{ old('type') == 'stock' ? 'selected' : '' }}>Stock</option>
+                            <option value="bond" {{ old('type') == 'bond' ? 'selected' : '' }}>Bond</option>
+                            <option value="mutual fund" {{ old('type') == 'mutual fund' ? 'selected' : '' }}>Mutual Fund</option>
+                            <option value="cryptocurrency" {{ old('type') == 'cryptocurrency' ? 'selected' : '' }}>Cryptocurrency</option>
+                        </select>
+                        <label for="type">Investment Type</label>
+                        @error('type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                            <div class="form-group">
-                                <label for="investment_date">Investment Date</label>
-                                <input type="date" class="form-control @error('investment_date') is-invalid @enderror"
-                                    id="investment_date" name="investment_date" value="{{ old('investment_date') }}"
-                                    required>
-                                @error('investment_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                    <!-- Investment Date -->
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control @error('investment_date') is-invalid @enderror"
+                            id="investment_date" name="investment_date" value="{{ old('investment_date') }}" required>
+                        <label for="investment_date">Investment Date</label>
+                        @error('investment_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                            <div class="form-group">
-                                <label for="status">Status</label>
-                                <select name="status" id="status" class="form-control @error('status') is-invalid @enderror"
-                                    required>
-                                    <option value="on_hold" {{ old('status') == 'on_hold' ? 'selected' : '' }}>On Hold
-                                    </option>
-                                    <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending
-                                    </option>
-                                    <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Paid</option>
-                                    <option value="lost" {{ old('status') == 'lost' ? 'selected' : '' }}>Lost</option>
-                                </select>
-                                @error('status')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                    <!-- Status -->
+                    <div class="form-floating mb-3">
+                        <select name="status" id="status" class="form-select @error('status') is-invalid @enderror" required>
+                            <option value="on_hold" {{ old('status') == 'on_hold' ? 'selected' : '' }}>On Hold</option>
+                            <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                            <option value="lost" {{ old('status') == 'lost' ? 'selected' : '' }}>Lost</option>
+                        </select>
+                        <label for="status">Status</label>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                            <div class="form-group">
-                                <label for="current_value">Current Value</label>
-                                <input type="number" class="form-control @error('current_value') is-invalid @enderror"
-                                    id="current_value" name="current_value" value="{{ old('current_value') }}" required
-                                    step="0.01">
-                                @error('current_value')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Create Investment</button>
-                        </form>
+                    <!-- Current Value -->
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control @error('current_value') is-invalid @enderror"
+                            id="current_value" name="current_value" value="{{ old('current_value') }}" required step="0.01"
+                            placeholder="Current Value">
+                        <label for="current_value">Current Value</label>
+                        @error('current_value')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
-            </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary w-100">Create Investment</button>
+                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+
 
         @foreach ($investments as $investment)
             <!-- Modal d'édition pour chaque investissement -->

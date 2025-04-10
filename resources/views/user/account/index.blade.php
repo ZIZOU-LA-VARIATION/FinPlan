@@ -66,11 +66,13 @@
                                         </a>
 
                                         <!-- Delete Button -->
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" data-account-id="{{ $account->id }}">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#deleteConfirmationModal" data-account-id="{{ $account->id }}">
                                             <i class="bi bi-trash"></i>
                                         </button>
 
-                                        <a href="{{ route('accounts.show', ['account' => $account->id]) }}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('accounts.show', ['account' => $account->id]) }}"
+                                            class="btn btn-info btn-sm">
                                             <i class="bi bi-eye"></i>
                                         </a>
                                     </td>
@@ -99,80 +101,82 @@
 
             </div>
         </div>
-        
+
         {{-- <a href="{{ route('accounts.index') }}" class="btn btn-secondary">
             <i class="bi bi-arrow-left"></i> Retour
         </a> --}}
-        
 
-        {{-- modal form --}}
+
+        <!-- Modal pour l'ajout d'un compte bancaire -->
         <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="accountModalLabel">Add Bank Account</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <form action="{{ route('accounts.store') }}" method="POST">
-                            @csrf
-
+                    <form action="{{ route('accounts.store') }}" method="POST">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="accountModalLabel">Add Bank Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
                             <!-- Account Name -->
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Account Name</label>
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                    name="name" value="{{ old('name') }}" required>
+                                    name="name" value="{{ old('name') }}" required placeholder="Enter account name">
+                                <label for="name">Account Name</label>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            {{-- Bank Name --}}
-                            <div class="mb-3">
-                                <label for="bank_name" class="form-label">Bank Name</label>
+                            <!-- Bank Name -->
+                            <div class="form-floating mb-3">
                                 <input type="text" class="form-control @error('bank_name') is-invalid @enderror"
-                                    id="bank_name" name="bank_name" value="{{ old('bank_name') }}" required>
+                                    id="bank_name" name="bank_name" value="{{ old('bank_name') }}" required
+                                    placeholder="Enter bank name">
+                                <label for="bank_name">Bank Name</label>
                                 @error('bank_name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            {{-- Account Type--}}
-                            <div class="mb-3">
-                                <label for="accountType" class="form-label">Account Type</label>
+                            <!-- Account Type -->
+                            <div class="form-floating mb-3">
                                 <select class="form-select @error('account_type') is-invalid @enderror" id="account_type"
                                     name="account_type" required>
                                     @foreach($accountTypes as $type)
-                                                                <option value="{{ $type->value }}" {{ old('account_type') == $type->value ? 'selected' :
-                                        '' }}>
-                                                                    {{ ucfirst(str_replace('_', ' ', $type->value)) }}
-                                                                </option>
+                                        <option value="{{ $type->value }}" {{ old('account_type') == $type->value ? 'selected' : '' }}>
+                                            {{ ucfirst(str_replace('_', ' ', $type->value)) }}
+                                        </option>
                                     @endforeach
                                 </select>
+                                <label for="account_type">Account Type</label>
                                 @error('account_type')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            {{-- Balance --}}
-                            <div class="mb-3">
-                                <label for="initial_balance" class="form-label">Initial Balance</label>
+                            <!-- Initial Balance -->
+                            <div class="form-floating mb-3">
                                 <input type="number" step="0.01"
                                     class="form-control @error('initial_balance') is-invalid @enderror" id="initial_balance"
-                                    name="initial_balance" value="{{ old('initial_balance') }}" required>
+                                    name="initial_balance" value="{{ old('initial_balance') }}" required
+                                    placeholder="Enter initial balance">
+                                <label for="initial_balance">Initial Balance</label>
                                 @error('initial_balance')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
 
-                            {{-- submit Button --}}
-                            <button type="submit" class="btn btn-primary">Save Account</button>
-                        </form>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary w-100">Save Account</button>
+                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
 
 
         <!-- Delete Confirmation Modal -->
@@ -189,7 +193,7 @@
                         Do you want to delete this bank account ?
                     </div>
                     <div class="modal-footer">
-                        <form id="deleteAccountForm"  action="{{route('accounts.destroy', $account->id)}}" method="POST">
+                        <form id="deleteAccountForm" action="{{route('accounts.destroy', $account->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

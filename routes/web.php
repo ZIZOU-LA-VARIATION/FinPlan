@@ -36,10 +36,6 @@ Route::get('debt', function () {
     return view('user.debts');
 })->name('debts');
 
-Route::get('finacial_goal', function () {
-    return view('user.finacial_goal');
-})->name('finacial_goal');
-
 Route::get('invioce', function () {
     return view('user.invioces');
 })->name('invioces');
@@ -59,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('savings', SavingController::class)->middleware('auth');
 
     Route::resource('investments', InvestmentController::class)->middleware('auth');
-    // Route::resource('financial-goals', FinancialGoalController::class);
+    Route::resource('financial_goals', FinancialGoalController::class);
     // Route::resource('debts', DebtController::class);
     // Route::resource('payment-reminders', PaymentReminderController::class);
     // Route::resource('invoices', InvoiceController::class);

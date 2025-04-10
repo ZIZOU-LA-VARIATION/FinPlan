@@ -93,7 +93,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('finacial_goal')}}">
+            <a class="nav-link  " href="{{route('financial_goals.index')}}">
                 <div>
                     <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>

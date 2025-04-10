@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Account::class, 'id_user');
     }
     
+        // Relation avec les objectifs financiers
+        public function financialGoals()
+        {
+            return $this->hasMany(FinancialGoal::class);  // Un utilisateur peut avoir plusieurs objectifs financiers
+        }
 }
