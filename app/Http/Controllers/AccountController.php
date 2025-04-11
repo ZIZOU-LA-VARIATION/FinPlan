@@ -20,7 +20,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::query()->orderByDesc('id')->get();
+        $accounts = Account::with('activity', 'account')->where('id_user', auth()->id())->orderByDesc('id')->get();
         $accountTypes = AccountType::cases();
         return view('user.account.index',compact('accounts','accountTypes'));
     }

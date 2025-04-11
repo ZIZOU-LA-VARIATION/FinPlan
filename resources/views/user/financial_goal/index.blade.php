@@ -76,10 +76,15 @@
                                         <td>
                                             {{ \Carbon\Carbon::parse($goal->deadline)->format('d M Y') }}
                                         </td>
-                    
-                                        <td>
-                                            {{ !empty($goal->description) ? $goal->description : 'No description' }}
-                                        </td>
+                                        @if ( !empty($goal->description))
+                                            <td>
+                                                {{$goal->description}}
+                                            </td>
+                                        @else
+                                            <td>
+                                                <span class="badge bg-danger"> No description</span>
+                                            </td>
+                                        @endif
                     
                                         {{-- Nouveau champ Status --}}
                                         <td>
@@ -238,8 +243,9 @@
         </div>
 
 
-        @foreach ($goals as $goal)
         <!-- Edit Financial Goal Modal -->
+        @foreach ($goals as $goal)
+
         <div class="modal fade" id="editFinancialGoalModal{{ $goal->id }}" tabindex="-1" role="dialog"
             aria-labelledby="editFinancialGoalModalLabel{{ $goal->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -345,7 +351,7 @@
                 </div>
             </div>
         </div>
-    @endforeach
+        @endforeach
     
 
 
@@ -440,7 +446,7 @@
             </div>
         </div>
     </div>
-@endforeach
+        @endforeach
 
 
     </div>

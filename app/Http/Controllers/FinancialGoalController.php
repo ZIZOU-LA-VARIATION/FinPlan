@@ -14,7 +14,7 @@ class FinancialGoalController extends Controller
     public function index()
     {
         $users = User::all(); // Récupère tous les utilisateurs
-        $goals = FinancialGoal::query()->orderByDesc('id')->get();
+        $goals = FinancialGoal::where('user_id', auth()->id())->orderByDesc('id')->get();
 
 
         return view('user.financial_goal.index', compact('users', 'goals'));

@@ -46,13 +46,26 @@ class User extends Authenticatable
         ];
     }
 
-    public function bankAccounts() {
+    public function bankAccounts()
+    {
         return $this->hasMany(Account::class, 'id_user');
     }
-    
-        // Relation avec les objectifs financiers
-        public function financialGoals()
-        {
-            return $this->hasMany(FinancialGoal::class);  // Un utilisateur peut avoir plusieurs objectifs financiers
-        }
+
+    // Relation avec les objectifs financiers
+    public function financialGoals()
+    {
+        return $this->hasMany(FinancialGoal::class);  // Un utilisateur peut avoir plusieurs objectifs financiers
+    }
+
+    public function debts()
+    {
+        return $this->hasMany(Debt::class);
+    }
+
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'id_user');
+    }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DebtController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\PaymentReminderController;
 use App\Http\Controllers\SavingController;
 use App\Http\Controllers\SavingGoalController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,10 +34,6 @@ Route::get('budget', function () {
     return view('user.budgets');
 })->name('budgets');
 
-Route::get('debt', function () {
-    return view('user.debts');
-})->name('debts');
-
 Route::get('invioce', function () {
     return view('user.invioces');
 })->name('invioces');
@@ -49,14 +47,14 @@ Route::get('invioce', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('accounts', AccountController::class);
-    // Route::resource('transactions', TransactionController::class);
+    Route::resource('transactions', TransactionController::class)->middleware('auth');
     // Route::resource('budgets', BudgetController::class);
-    // Route::resource('categories', CategoryController::class);
+    Route::resource('activities', ActivityController::class);
     Route::resource('savings', SavingController::class)->middleware('auth');
 
     Route::resource('investments', InvestmentController::class)->middleware('auth');
-    Route::resource('financial_goals', FinancialGoalController::class);
-    // Route::resource('debts', DebtController::class);
+    Route::resource('financial_goals', FinancialGoalController::class)->middleware('auth');;
+    Route::resource('debts', DebtController::class);
     // Route::resource('payment-reminders', PaymentReminderController::class);
     // Route::resource('invoices', InvoiceController::class);
 });

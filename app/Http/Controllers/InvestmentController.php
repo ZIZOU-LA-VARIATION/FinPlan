@@ -21,7 +21,7 @@ class InvestmentController extends Controller
         $users = User::all(); // Récupère tous les utilisateurs
 
         // Utilise paginate() pour la pagination des investissements
-        $investments = Investment::query()->orderByDesc('id')->get();
+        $investments = Investment::where('id_user', auth()->id())->orderByDesc('id')->get();
 
 
         // Retourne la vue avec les utilisateurs et les investissements

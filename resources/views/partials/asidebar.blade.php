@@ -43,14 +43,26 @@ id="sidenav-main">
                 <span class="nav-link-text ms-1">Dashboard</span>
             </a>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('transactions')}}">
+            <a class="nav-link  " href="{{route('activities.index')}}">
+                <div>
+                    <img src="{{asset('assets/img/transaction.png')}}" alt="" class="image">
+                </div>
+                <span class="nav-link-text ms-1">Activities</span>
+            </a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link  " href="{{route('transactions.index')}}">
                 <div>
                     <img src="{{asset('assets/img/transaction.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Transactions</span>
             </a>
         </li>
+        
         <li class="nav-item">
             <a class="nav-link  " href="{{route('accounts.index')}}">
                 <div>
@@ -77,13 +89,14 @@ id="sidenav-main">
         </li>
 
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('debts')}}">
+            <a class="nav-link  " href="{{route('debts.index')}}">
                 <div>
                     <img src="{{asset('assets/img/loan.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Debts</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link  " href="{{route('investments.index')}}">
                 <div>
@@ -92,14 +105,16 @@ id="sidenav-main">
                 <span class="nav-link-text ms-1">Investments</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link  " href="{{route('financial_goals.index')}}">
                 <div>
                     <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
                 </div>
-                <span class="nav-link-text ms-1">finacial_goal</span>
+                <span class="nav-link-text ms-1">Finacial Goal</span>
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link  " href="{{route('invioces')}}">
                 <div>

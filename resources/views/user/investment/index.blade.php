@@ -105,9 +105,6 @@
                                         </button>
                                     </td>
                                 </tr>
-
-
-
                             @empty
                                 <tr>
                                     <td colspan="8" class="text-center text-muted">No investments found.</td>

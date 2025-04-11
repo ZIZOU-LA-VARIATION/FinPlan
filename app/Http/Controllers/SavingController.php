@@ -15,8 +15,7 @@ class SavingController extends Controller
     public function index()
     {
         $savings = Saving::query()->orderByDesc('id')->get();
-        $savings = Saving::where('id_user', Auth::id())->paginate(10);
-
+        $savings = Saving::where('id_user', auth()->id())->orderByDesc('id')->paginate(10);
         return view('user.saving.index', compact('savings'));
     }
 
