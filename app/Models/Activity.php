@@ -15,6 +15,17 @@ class Activity extends Model
     public function debts()
     {
         return $this->hasMany(Debt::class, 'id_activity');
+
     }
+
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class, 'id_activity');
+    }
+
+    public function invoices()
+{
+    return $this->hasMany(Invoice::class, 'id_activity');
+}
 
 }

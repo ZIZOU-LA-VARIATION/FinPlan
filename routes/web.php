@@ -26,29 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 
-Route::get('transaction', function () {
-    return view('user.transactions');
-})->name('transactions');
-
-Route::get('budget', function () {
-    return view('user.budgets');
-})->name('budgets');
-
-Route::get('invioce', function () {
-    return view('user.invioces');
-})->name('invioces');
-
-
-
-
-
-
-
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('accounts', AccountController::class);
     Route::resource('transactions', TransactionController::class)->middleware('auth');
-    // Route::resource('budgets', BudgetController::class);
+    Route::resource('budgets', BudgetController::class)->middleware('auth');
     Route::resource('activities', ActivityController::class);
     Route::resource('savings', SavingController::class)->middleware('auth');
 
@@ -56,5 +38,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('financial_goals', FinancialGoalController::class)->middleware('auth');;
     Route::resource('debts', DebtController::class);
     // Route::resource('payment-reminders', PaymentReminderController::class);
-    // Route::resource('invoices', InvoiceController::class);
+    Route::resource('invoices', InvoiceController::class)->middleware('auth');
 });

@@ -66,6 +66,18 @@ class User extends Authenticatable
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'id_user');
+
     }
+    
+    public function budgets()
+{
+    return $this->hasMany(Budget::class, 'id_user');
+}
+
+public function invoices()
+{
+    return $this->hasMany(Invoice::class, 'id_user');
+}
+
 
 }

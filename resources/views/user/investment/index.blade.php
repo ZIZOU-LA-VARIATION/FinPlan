@@ -39,7 +39,7 @@
                 <!-- Button to trigger the modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#createInvestmentModal">
-                    <i class="bi bi-circle"></i>
+                    <i class="bi bi-plus-circle"></i> Add investissement
                 </button>
 
 
@@ -49,6 +49,11 @@
 
             <!-- Tableau des investissements -->
             <div class="card-body px-0 pt-0 pb-2">
+                @if($investments->isEmpty())
+                <div class="alert alert-warning">
+                    <i class="bi bi-info-circle-fill me-2"></i> No investissement found.
+                </div>
+            @else
                 <div class="table-responsive p-0">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
@@ -133,6 +138,7 @@
                 </div>
 
             </div>
+            @endif
         </div>
 
 <!-- Modal pour la création d'un investissement -->

@@ -46,6 +46,11 @@
 
             <!-- Tableau des budgets -->
             <div class="card-body px-0 pt-0 pb-2">
+                @if($debts->isEmpty())
+                <div class="alert alert-warning">
+                    <i class="bi bi-info-circle-fill me-2"></i> No debt found.
+                </div>
+            @else
                 <div class="table-responsive p-0">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
@@ -136,7 +141,7 @@
                         </tbody>
                     </table>
                 </div>
-                
+                @endif
 
                 <!-- Pagination -->
                 <div class="d-flex justify-content-center align-items-center mb-4">

@@ -21,6 +21,11 @@
             </div>
 
             <div class="card-body px-0 pt-0 pb-2">
+                @if($savings->isEmpty())
+                <div class="alert alert-warning">
+                    <i class="bi bi-info-circle-fill me-2"></i> No saving found.
+                </div>
+            @else
                 <div class="table-responsive p-0">
                     <table class="table table-hover table-bordered">
                         <thead class="table-dark">
@@ -118,6 +123,7 @@
 
                     </table>
                 </div>
+                @endif
 
                 <!-- Pagination (if needed) -->
                 <div class="d-flex justify-content-center mt-3">

@@ -40,7 +40,7 @@
                 <!-- Bouton pour ouvrir le modal de création de transaction -->
                 <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
                     data-bs-target="#createTransactionModal">
-                    <i class="fas fa-plus me-1"></i> Add Transaction
+                    <i class="bi bi-plus me-1"></i> Add Transaction
                 </button>
 
                 <!-- Champ de recherche -->

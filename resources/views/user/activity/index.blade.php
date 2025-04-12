@@ -29,10 +29,10 @@
 
             <div class="aligne">
                 <div>
-                    <img src="{{asset('assets/img/saving.png')}}" alt="" class="images">
+                    <img src="{{asset('assets/img/lifestyle.png')}}" alt="" class="images">
                 </div>
                 <h2 class="text">
-                    <span class="text-success mb-4">Invioces</span>
+                    <span class="text-success mb-4">Activities</span>
                 </h2>
             </div>
 

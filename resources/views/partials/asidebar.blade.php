@@ -47,7 +47,7 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('activities.index')}}">
                 <div>
-                    <img src="{{asset('assets/img/transaction.png')}}" alt="" class="image">
+                    <img src="{{asset('assets/img/lifestyle.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Activities</span>
             </a>
@@ -72,7 +72,7 @@ id="sidenav-main">
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('budgets')}}">
+            <a class="nav-link  " href="{{route('budgets.index')}}">
                 <div>
                     <img src="{{asset('assets/img/budget.png')}}" alt="" class="image">
                 </div>
@@ -109,16 +109,16 @@ id="sidenav-main">
         <li class="nav-item">
             <a class="nav-link  " href="{{route('financial_goals.index')}}">
                 <div>
-                    <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
+                    <img src="{{asset('assets/img/financial-goals.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">Finacial Goal</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link  " href="{{route('invioces')}}">
+            <a class="nav-link  " href="{{route('invoices.index')}}">
                 <div>
-                    <img src="{{asset('assets/img/investissement.png')}}" alt="" class="image">
+                    <img src="{{asset('assets/img/invoice.png')}}" alt="" class="image">
                 </div>
                 <span class="nav-link-text ms-1">invioces</span>
             </a>
